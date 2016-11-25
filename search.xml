@@ -3,6 +3,13 @@
   
     
     <entry>
+      <title></title>
+      <url>%2F2016%2F11%2F25%2Fgoogle80f3fc3d3d461aba%2F</url>
+      <content type="text"><![CDATA[google-site-verification: google80f3fc3d3d461aba.html]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[ZHBLE-Bluetooth的封装库]]></title>
       <url>%2F2016%2F08%2F10%2FZHBLE-Bluetooth%E7%9A%84%E5%B0%81%E8%A3%85%E5%BA%93%2F</url>
       <content type="text"><![CDATA[ZHBLE 使用Block回调方式，旨在使调用系统CoreBluetooth库简单明了. ##Features 基于原生CoreBluetooth,回调函数全部封装成Block方式，使调用相关函数简洁明了。 设备作为Central端和Peripheral端都有封装。 采用工厂模式和Block结合使得初始化和函数调用更容易。 ##Introduce类名 | 作用及用法—– | —–ZHBLECentral | 设备作为Central端的相关属性和操作例如:初始化Central,扫描,连接,检索设备等。ZHBLEPeripheral | 对Peripheral端的相关操作例如:发现服务和特征,监听，读写等操作。ZHBLEPeripheralManager | 设备作为Peripheral端时的相关操作例如:CBPeripheralManager的初始化,广播,添加服务，发送数据等。ZHBLEStoredPeripherals | 设备本地缓存相关操作ZHBLEManager | 快捷访问最近连接的设备ZHBLEBlocks | 所有Block定义 UsageCocoaPods (recommended)pod ‘ZHBLE’, ‘~&gt; 0.1.5’ Central123456789101112131415161718192021#import &quot;ZHBLE.h&quot;self.central = [ZHBLECentral sharedZHBLECentral];//扫描[self.central scanPeripheralWithServices:uuids options:@&#123;CBCentralManagerScanOptionAllowDuplicatesKey: @(YES)&#125; onUpdated:^(ZHBLEPeripheral *peripheral,NSDictionary *data)&#123; if (peripheral) &#123; //Do Something &#125; &#125;];//连接[self.central connectPeripheral:peripheral options:nil onFinished:^(ZHBLEPeripheral *peripheral, NSError *error)&#123;&#125;onDisconnected:^(ZHBLEPeripheral *peripheral, NSError *error)&#123; &#125;); &#125;]; Peripheral12345678910111213141516171819#import &quot;ZHBLE.h&quot;self.peripheralManager = [ZHBLEPeripheralManager sharedZHBLEPeripheralManager];//广播 CBUUID *temUUID = [CBUUID UUIDWithString:@&quot;902DD287-69BE-4ADD-AACF-AA3C24D83B66&quot;]; NSArray *temUUIDArray = [NSArray arrayWithObjects:temUUID, nil]; NSDictionary *temServiceDic = @&#123;CBAdvertisementDataServiceUUIDsKey:temUUIDArray&#125;; [self.peripheralManager startAdvertising:temServiceDic onStarted:^(NSError *error)&#123; &#125;];//添加服务[self.peripheralManager addService:_transferService onFinish:^(CBService *service,NSError *error)&#123; &#125;];]]></content>
